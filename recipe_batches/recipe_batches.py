@@ -3,8 +3,16 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  for iKey, iVal in ingredients.items():
+    for rKey, rVal in recipe.items():
+      print(f'recip: {rKey}-{rVal} ingre: {iKey}-{iVal}')
+      if rKey == iKey:
+        if rVal > iVal:
+          print(f'Required {rKey} {rVal}, Only have {iKey} {iVal}')
+          return 0
+        
 
+recipe_batches({ 'milk': 100, 'flour': 4, 'sugar': 10, 'butter': 5 }, { 'milk': 1288, 'flour': 9, 'sugar': 95 })
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 

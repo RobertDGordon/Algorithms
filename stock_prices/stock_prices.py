@@ -19,19 +19,29 @@ def find_max_profit(prices):
   # print(f'{max_profit} = {highest} - {lowest}')
 
   ##### Iterative:
+  # buy = prices[0]
+  # max_profit = prices[1] - buy
+  # for i in range(1, len(prices)):  #<--- start at 1 instead of 0 fixed it?!
+  #   current_price = prices[i]
+  #   if (current_price - buy) > max_profit:
+  #     max_profit = current_price - buy
+  #   for j in range(i, len(prices)):
+  #     next_price = prices[j]
+  #     if (next_price - buy) > max_profit:
+  #       max_profit = next_price - buy
+  #   buy = prices[i]
+
+  # return max_profit
+
+  ##### Recursive:
   buy = prices[0]
-  max_profit = prices[1] - buy
-  for i in range(1, len(prices)):  #<--- start at 1 instead of 0 fixed it?!
+  max_profit = prices[1] - prices[0]
+  for i in range(1, len(prices)):
     current_price = prices[i]
     if (current_price - buy) > max_profit:
-      max_profit = current_price - buy
-    for j in range(i, len(prices)):
-      next_price = prices[j]
-      if (next_price - buy) > max_profit:
-        max_profit = next_price - buy
-    buy = prices[i]
-
-  return max_profit
+      max_profit = current_price - buy  #set new max_profit if found
+      print(f'max profit: {max_profit}')
+  return max(max_profit, find_max_profit(prices[1:])) #compare max of current max_profit vs next_price
 
 
 if __name__ == '__main__':
